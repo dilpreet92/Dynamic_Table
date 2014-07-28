@@ -1,0 +1,32 @@
+table {
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  width: 30%;
+  text-align: center;
+  border: 1px solid black;
+}
+div {
+  width: 60%;
+  margin: 0 auto;
+  border: 2px solid #F6F6F6;
+}
+.name {
+  width: 100px;
+  background-color: yellow;
+}
+.email {
+  width: 150px;
+}
+.save{
+  background-color: green;
+}
+.edit {
+  background-color: yellow;
+}
+.delete {
+  background-color: red;
+}
