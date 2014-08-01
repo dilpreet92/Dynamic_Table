@@ -1,8 +1,11 @@
-function CreateDynamicTable(elements, regex) {
+var regex = {
+  "email" : /^\w+@(\w)+\.(\w{3}|\w{2}\.\w{2}){1}$/i,
+  "name" : /^[a-z]+$/i
+};
+
+function CreateDynamicTable(elements) {
   this.buttonElement = elements.buttonElement;
   this.tableElement = elements.tableElement;
-  this.emailRegExp = regex.email;
-  this.nameRegExp = regex.name;
 }
 
 CreateDynamicTable.prototype.addInputTextBox = function(classOfInputElement) {
@@ -63,7 +66,7 @@ CreateDynamicTable.prototype.addLabel = function(currentElement,classOfElement) 
 CreateDynamicTable.prototype.saveText = function(currentSaveButton) {
   var emailTextElement = this.getRowElements(currentSaveButton,".email"),
       nameTextElement = this.getRowElements(currentSaveButton,".name");
-  if(this.validate(nameTextElement.val(), this.nameRegExp, "name") & this.validate(emailTextElement.val(), this.emailRegExp, "Email")) {
+  if(this.validate(nameTextElement.val(), regex.name, "name") & this.validate(emailTextElement.val(), regex.email, "Email")) {
     this.enableEditDelete(currentSaveButton);
     this.addLabel(nameTextElement, "name");
     this.addLabel(emailTextElement, "email");    
@@ -92,10 +95,6 @@ $(document).ready(function() {
     "buttonElement" : $("#addRow"),
     "tableElement" : $("#userData")
   };
-  var regex = {
-    "email" : /^\w+@(\w)+\.(\w{3}|\w{2}\.\w{2}){1}$/i,
-    "name" : /^[a-z]+$/i
-  };
-  var addRowObj = new CreateDynamicTable(elements, regex);
+  var addRowObj = new CreateDynamicTable(elements);
   addRowObj.bindEvents();
 });
